@@ -1,11 +1,12 @@
 <script setup>
 import Counter from './components/counter.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import SignUpForm from './components/SignUpForm.vue'
 </script>
 
 <template>
  
-    <Counter></Counter>
+    <Counter></Counter> 
+    <SignUpForm></SignUpForm>
 </template>
 
 <style>

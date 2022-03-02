@@ -4,7 +4,7 @@
             return {
                 count: 0
             }
-        },
+        }, 
     
     methods: {
         increment() {
