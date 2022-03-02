@@ -20,9 +20,16 @@
                     
                     this.tempSkill = '';
                 }
-            }
+            },
+            // delete skill from array
+            deleteSkills(skill) {
+                this.skills = this.skills.filter((item) => {
+                    return skill !== item;
+                });
+            },
         }
     }
+    // when a user clicks on a skill, delete that skillls..
 </script>
 
 
@@ -46,7 +53,7 @@
         <input @keyup.alt="addSkill" type="text" v-model="tempSkill">
 
         <div v-for="skill in skills" :key="skill" class="pill">
-            {{skill}}
+            <span @click="deleteSkills(skill)"> {{skill}} </span>
         </div>
 
         <div class="terms">
@@ -110,6 +117,13 @@
        display: inline-block;
    }
    .pill{
-       color:black;
+       display: inline-block;
+       margin: 20px 10px 0 0;
+       padding: 6px 12px;
+       border-radius: 20px;
+       font-size: 12px;
+       letter-spacing: 1px;
+        background:#eee ;
+       color:#777;
    }
 </style>
