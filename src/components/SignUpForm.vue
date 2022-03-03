@@ -9,6 +9,7 @@
                 terms: false,
                 tempSkill: '',
                 skills: [],
+                passwordError: '',
             }
         },
         methods: {
@@ -27,19 +28,56 @@
                     return skill !== item;
                 });
             },
+            // submit form
+            handleSubmit(e) {
+                // validate password
+                if (this.password.length < 6) {
+                    this.passwordError = 'Password must be at least 6 characters';
+                    return;
+                }
+                else{
+                    this.passwordError = '';
+                }
+
+                // validate email
+                if (!this.email.includes('@')) {
+                    this.passwordError = 'Email must be valid';
+                    return;
+                }
+                // validate terms
+                if (!this.terms) {
+                    this.passwordError = 'You must accept terms and conditions';
+                    return;
+                }
+
+            },
+            // reset form
+            handleReset() {
+                this.email = '';
+                this.password = '';
+                this.role = 'designer';
+                this.terms = false;
+                this.skills = [];
+                this.tempSkill = '';
+                this.passwordError = '';
+            }
+
         }
     }
-    // when a user clicks on a skill, delete that skillls..
+    // now submit the form
 </script>
 
 
 <template>
-    <form>  
+    <form @submit.prevent="handleSubmit">  
         <label for="">Email</label>
         <input placeholder="Enter Email Address" v-model="email" type="email" required>
 
         <label for="">Password:</label>
         <input placeholder="Enter Password" v-model="password" type="password" required>
+        <div class="error" v-if="passwordError">
+            {{ passwordError }}
+        </div>
 
 
         <label for="">Role:</label>
@@ -57,15 +95,29 @@
         </div>
 
         <div class="terms">
-            <input type="checkbox" required v-model="terms">
-            <label >Accepts terms and conditons</label>
+            <input id="conditions" type="checkbox" required v-model="terms">
+            <label for="conditions">Accepts terms and conditons</label>
+        </div>
+        <div class="btn-container">
+            <!-- submit form -->
+            <div class="submit">    
+            <button class="btnStyle">Create an account</button>
+        </div>
+        <!-- reset button -->
+                <div >
+                <button class="btnStyle" @click="handleReset">Reset</button>
+            </div>
         </div>
     </form>
-
-    <p>Email: {{ email }}</p>
-    <p>Password: {{ password }}</p>
-    <p>Role: {{ role }}</p>
-    <p>Terms accepted: {{ terms }}</p>
+    
+    <div class="ItemsCenter">
+        <div>
+            <p>Email: {{ email }}</p>
+            <p>Password: {{ password }}</p>
+            <p>Role: {{ role }}</p>
+            <p>Terms accepted: {{ terms }}</p>
+        </div>
+    </div>
 
 
 
@@ -75,15 +127,24 @@
 
 <style scoped>
    form{
-       max-width: 420px;
-       margin: 3px auto;
+       max-width: 30%;
+       margin: 30px auto;
        background: white;
        text-align: left;
        padding: 40px;
        border-radius: 10px;
+       box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+   }
+   .ItemsCenter{
+         display: flex;
+         justify-content: left;
+         align-items: center;
+         text-align: left;
+         flex-direction: column;
+         margin-bottom: 3%;
    }
    label{
-       color: #aaa;
+       color: rgb(128, 127, 127);
        display: inline-block;
        margin: 25px 0 15px;
        font-size: 0.6rem;
@@ -116,6 +177,11 @@
        cursor: pointer;
        display: inline-block;
    }
+   .btn-container{
+       display: flex;
+       justify-content: center;
+       gap: 10px;
+   }
    .pill{
        display: inline-block;
        margin: 20px 10px 0 0;
@@ -125,5 +191,23 @@
        letter-spacing: 1px;
         background:#eee ;
        color:#777;
+   }
+   .submit{
+       text-align: center;
+   }
+   .btnStyle{
+       background: #0b6dff;
+       border:0;
+       padding: 10px 20px;
+       color: white;
+         border-radius: 20px;
+         cursor: pointer;
+         font-size: 16px;
+   }
+   .error{
+       color:#ff0062;
+       margin-top: 10px;
+       font-size: 0.6rem;
+
    }
 </style>
