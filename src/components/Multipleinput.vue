@@ -1,8 +1,5 @@
  <script>
 
-
-
-
     export default {
         data() {
             return {
@@ -39,6 +36,8 @@
             },
                 removeImage: function(e) {
                     this.image = '';
+                    this.ImageError = '';
+                    this.imageUploaded = false;
             },
             // submit form
             handleSubmit(e){
@@ -72,9 +71,7 @@
                     this.ImageError = '';
                 }
             }
-
         }
-
     }
  </script>
 
@@ -148,7 +145,6 @@
             </div>
         </div>
     </div>
-
  </template>
 
  <style scoped>
@@ -177,12 +173,13 @@ label{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    margin-left: 16.2rem;
 }
 img {
-  width: 30%;
+  width: 20%;
   display: block;
   margin-bottom: 10px;
+  background-attachment: fixed;
 }
 .error{
     font-size: 0.8rem;
