@@ -1,14 +1,24 @@
 <script setup>
 import Counter from './components/counter.vue';
 import SignUpForm from './components/signUpForm/SignUpForm.vue';
-import './components/signUpForm/SignUpform.css';
+import TestingResult from './components/testingvue.vue';
+import Multipleinput from './components/Multipleinput.vue';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+ 
+
+
+
+
 
 
 </script>
 
 <template>
-    <Counter></Counter> 
-    <SignUpForm></SignUpForm>
+    <!-- <Counter></Counter>  -->
+    <!-- <SignUpForm></SignUpForm> -->
+    <!-- <TestingResult></TestingResult> -->
+    <Multipleinput></Multipleinput>
 </template>
 
 <style>
