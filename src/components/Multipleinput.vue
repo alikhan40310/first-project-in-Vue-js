@@ -14,6 +14,7 @@
                 rangeError: '',
                 ImageError: '',
                 imageUploaded: false,
+                termCondition: false,
             }
         },
         methods:{
@@ -88,7 +89,7 @@
                     {{ passwordError }}
                 </div>
 
-                <select name="" v-model="expert" class="mb-3 btn btn-info mt-4 col-3 text-xl-start fs-6">
+                <select name="" v-model="expert" class="mb-3 btn btn-primary mt-4 col-3 text-xl-start fs-6">
                     <option class="" value="react">React</option>
                     <option value="angular">Angular</option>
                     <option value="js">JavaScript</option>
@@ -126,7 +127,14 @@
                         designer
                         </label>
                     </div>
+
                 </div>
+                <div class="form-check mt-3">
+                        <input v-model="termCondition" class="form-check-input" type="checkbox" value="" id="termConditon" checked>
+                        <label class="form-check-label" for="termConditon">
+                            I agree the terms and conditions
+                        </label>
+                    </div>
                 <button class="btn btn-primary mt-4">Submit</button>
             </form>
             <div class="itemsCenter">
@@ -141,6 +149,8 @@
                         <button class="btn btn-danger" @click="removeImage">Remove image</button>
                     </div>
                     <p>Field: {{field}}</p>
+                    <p>Term: {{termCondition}}</p>
+
                 </div>
             </div>
         </div>
